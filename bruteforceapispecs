@@ -1,0 +1,13 @@
+# Basic scan
+python api_verifier.py -u https://target.com -w api-fuzzing-wordlist.txt -t 100 -o results.json
+
+# With auth + deep verification + Burp proxy
+python api_verifier.py -u https://target.com -w api-fuzzing-wordlist.txt \
+  -t 80 --deep \
+  -H "Authorization: Bearer TOKEN" \
+  --proxy http://127.0.0.1:8080 \
+  --mc 200,301,401,403,405 \
+  -o verified.json
+
+# Fast quiet mode, pipe-friendly
+python api_verifier.py -u https://target.com -w api-fuzzing-wordlist.txt -t 200 -q -o hits.txt
